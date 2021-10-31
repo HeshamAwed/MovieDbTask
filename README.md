@@ -17,3 +17,7 @@
 #Timber for logging
 #Stetho for debugging persistence data & network packets
 #Ripple animation, Shared element transition
+![Movie Details](https://user-images.githubusercontent.com/18212550/139589479-b1c6d242-5271-43a0-9b96-e3c6a80034b7.jpg)
+
+![Uploading Top Movies.![Popular Movies](https://user-images.githubusercontent.com/18212550/139589460-89536798-7901-4bf5-a008-8714c952f6d1.jpg)![Now Playing](https://user-images.githubusercontent.com/18212550/139589471-c6d1eee5-8453-43f4-a732-c3271f30f107.jpg)
+…]()
