@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="movie"
             type="com.hesham.moviedbtask.data.model.MovieModel" />
@@ -15,10 +16,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/movie_image"
+            imageUrl="@{movie.fullPosterPath}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            imageUrl="@{movie.fullPosterPath}"
             tools:src="@drawable/bg_default_image" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -30,9 +31,9 @@
             android:paddingTop="@dimen/dp_10"
             android:paddingEnd="@dimen/dp_16"
             android:paddingBottom="@dimen/dp_10"
+            android:text="@{movie.title}"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_16"
-            android:text="@{movie.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Title" />
 

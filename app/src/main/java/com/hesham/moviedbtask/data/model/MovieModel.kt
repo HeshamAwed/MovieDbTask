@@ -1,6 +1,5 @@
 package com.hesham.moviedbtask.data.model
 
-
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -54,7 +53,7 @@ data class MovieModel(
     var voteCount: Int?,
     @SerializedName("filter_type")
     var filter_type: String?
-):Parcelable{
+) : Parcelable {
 
     fun getFullBackdropPath() =
         if (backdropPath.isNullOrBlank()) null else Constants.LARGE_IMAGE_URL + backdropPath

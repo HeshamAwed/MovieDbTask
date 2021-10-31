@@ -5,9 +5,7 @@ import androidx.room.RoomDatabase
 import com.hesham.moviedbtask.data.local.dao.MovieDAO
 import com.hesham.moviedbtask.data.model.MovieModel
 
-
-@Database(entities = [MovieModel::class],version = 1)
+@Database(entities = [MovieModel::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDAO(): MovieDAO
 }
-

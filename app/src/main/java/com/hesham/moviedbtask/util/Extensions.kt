@@ -3,15 +3,12 @@ package com.hesham.moviedbtask.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hesham.moviedbtask.MovieApplication.Companion.context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-
 
 fun ViewModel.launchDataLoad(
     execution: suspend CoroutineScope.() -> Unit,

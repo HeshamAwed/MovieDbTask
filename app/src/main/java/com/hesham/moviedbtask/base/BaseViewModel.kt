@@ -12,7 +12,6 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-
 open class BaseViewModel : ViewModel() {
 
     // loading flag

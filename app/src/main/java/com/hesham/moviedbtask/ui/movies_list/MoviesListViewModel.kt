@@ -2,14 +2,19 @@ package com.hesham.moviedbtask.ui.movies_list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.PagingSource
+import androidx.paging.cachedIn
 import com.hesham.moviedbtask.base.BaseViewModel
 import com.hesham.moviedbtask.data.model.MovieModel
 import com.hesham.moviedbtask.data.repos.MovieRepos
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class MoviesListViewModel  constructor(var movieRepos: MovieRepos) : BaseViewModel() {
+class MoviesListViewModel constructor(var movieRepos: MovieRepos) : BaseViewModel() {
     private var pagingSource: PagingSource<Int, MovieModel>? = null
     var isRefreshing = MutableLiveData<Boolean>(false)
     var isEmptyList = MutableLiveData<Boolean>(false)
@@ -18,14 +23,15 @@ class MoviesListViewModel  constructor(var movieRepos: MovieRepos) : BaseViewMod
 
         val pager = Pager(
             config = movieRepos.getDefaultPageConfig(),
-            pagingSourceFactory = {movieRepos.getMovieDataSource(popularity).apply {
-                pagingSource = this
-            } }
+            pagingSourceFactory = {
+                movieRepos.getMovieDataSource(popularity).apply {
+                    pagingSource = this
+                }
+            }
         ).flow
 
         return pager.cachedIn(viewModelScope)
     }
-
 
     fun handleLoadStates(combinedLoadStates: CombinedLoadStates, itemCount: Int) {
         when {
@@ -51,7 +57,7 @@ class MoviesListViewModel  constructor(var movieRepos: MovieRepos) : BaseViewMod
             }
             combinedLoadStates.refresh is LoadState.Loading && combinedLoadStates.append is LoadState.Loading && combinedLoadStates.prepend is LoadState.Loading -> {
                 isEmptyList.postValue(itemCount == 0)
-                if(itemCount == 0){
+                if (itemCount == 0) {
                     showLoading()
                 }
             }
@@ -69,8 +75,7 @@ class MoviesListViewModel  constructor(var movieRepos: MovieRepos) : BaseViewMod
         pagingSource?.invalidate()
     }
 
-
-    fun doRefreshMovies(){
+    fun doRefreshMovies() {
         isRefreshing.value = true
         pagingSource?.invalidate()
     }
@@ -78,5 +83,4 @@ class MoviesListViewModel  constructor(var movieRepos: MovieRepos) : BaseViewMod
         hideLoading()
         isRefreshing.postValue(false)
     }
-
 }

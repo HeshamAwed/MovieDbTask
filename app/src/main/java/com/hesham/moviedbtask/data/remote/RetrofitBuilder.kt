@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 private const val token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZGFkYjViOTcwODQ1MTJmM2Q0ODc0OWU2M2M2ZWU3MyIsInN1YiI6IjU3YWRhOGMxYzNhMzY4MjA3NTAwNTI1NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GbHnOG69HdBPabpON-okVdYcKT8LPHRLWDZaLEVcdpw"
 fun getHeaderInterceptor(): Interceptor {
     return Interceptor { chain ->

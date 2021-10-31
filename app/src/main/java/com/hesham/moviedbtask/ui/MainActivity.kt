@@ -19,13 +19,11 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
     }
-    fun changeTitle(title:String,showBackButton:Boolean){
-       binding.tvTitle.text = title
-        if(showBackButton)
+    fun changeTitle(title: String, showBackButton: Boolean) {
+        binding.tvTitle.text = title
+        if (showBackButton)
             binding.ivBack.visibility = View.VISIBLE
         else
             binding.ivBack.visibility = View.GONE
     }
-
-
 }

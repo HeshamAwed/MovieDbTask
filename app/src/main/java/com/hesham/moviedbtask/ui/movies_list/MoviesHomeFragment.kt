@@ -1,10 +1,10 @@
 package com.hesham.moviedbtask.ui.movies_list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hesham.moviedbtask.R
@@ -17,9 +17,9 @@ class MoviesHomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeMovieBinding
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeMovieBinding.inflate(inflater)
@@ -29,7 +29,7 @@ class MoviesHomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.pager.adapter = MoviesHomeAdapter(this)
-        TabLayoutMediator(binding.tabLayout,binding.pager){tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.title_top)
                 1 -> tab.text = getString(R.string.title_popular)
@@ -40,7 +40,7 @@ class MoviesHomeFragment : BaseFragment() {
 
     class MoviesHomeAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         override fun getItemCount(): Int = 3
-        val popularity = arrayListOf(Constants.TOP_RATED_MOVIE,Constants.POPULAR_MOVIE,Constants.NOW_PLAYING_MOVIE)
+        val popularity = arrayListOf(Constants.TOP_RATED_MOVIE, Constants.POPULAR_MOVIE, Constants.NOW_PLAYING_MOVIE)
         override fun createFragment(position: Int): Fragment {
             val fragment = MoviesListFragment()
             fragment.arguments = Bundle().apply {
@@ -48,13 +48,10 @@ class MoviesHomeFragment : BaseFragment() {
             }
             return fragment
         }
-
     }
 
     override fun onResume() {
         super.onResume()
-        changeActivityTitle(getString(R.string.app_name),false)
+        changeActivityTitle(getString(R.string.app_name), false)
     }
-
-
 }

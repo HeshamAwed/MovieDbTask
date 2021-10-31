@@ -2,10 +2,7 @@ package com.hesham.moviedbtask.di
 
 import androidx.room.Room
 import com.hesham.moviedbtask.data.local.db.AppDatabase
-import com.hesham.moviedbtask.data.remote.ApiService
-import com.hesham.moviedbtask.data.remote.retrofitBuilder
 import org.koin.dsl.module
-
 
 val databaseModule = module {
     single {

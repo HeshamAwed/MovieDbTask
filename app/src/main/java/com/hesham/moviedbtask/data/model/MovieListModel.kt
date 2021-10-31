@@ -1,6 +1,5 @@
 package com.hesham.moviedbtask.data.model
 
-
 import com.google.gson.annotations.SerializedName
 
 data class MovieListModel(

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -34,8 +35,7 @@
                 android:stretchColumns="true"
                 app:spanCount="2"
                 tools:listitem="@layout/item_movie"
-                tools:itemCount="10"
-                />
+                tools:itemCount="10" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <androidx.core.widget.ContentLoadingProgressBar
