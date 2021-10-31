@@ -1,37 +1,24 @@
-name: ktlint-check
-  # You may pin to the exact commit or the version.
-  # uses: musichin/ktlint-check@5d37fc5eab496730ec9243efad51ad3c4938e6cf
-  uses: musichin/ktlint-check@v1
-  with:
-    # Version of ktlint, e.g. "0.42.1"
-    version: # optional
-    # Enables annotation reporting
-    annotate: # optional
-    # Report lint errors as warnings
-    warn: # optional
-    # 
-    android: # optional
-    # 
-    debug: # optional
-    # 
-    disabledRules: # optional
-    # 
-    format: # optional
-    # 
-    limit: # optional
-    # 
-    relative: # optional
-    # 
-    reporter: # optional
-    # 
-    ruleset: # optional
-    # 
-    editorconfig: # optional
-    # 
-    experimental: # optional
-    # 
-    baseline: # optional
-    # 
-    patterns: # optional
-    # 
-    verbose: # optional
+name: ktlint
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/ktlint.yml
+      - 'src/**/*.kt'
+      - '**.kts'
+
+jobs:
+  ktlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.42.1/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+      - name: run ktlint
+        run: |
+          ktlint --reporter=checkstyle,output=build/ktlint-report.xml
+        continue-on-error: true
+      - uses: yutailang0119/action-ktlint@v1
+        with:
+          xml_path: build/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
+        continue-on-error: false # If annotations contain error of severity, action-ktlint exit 1.
