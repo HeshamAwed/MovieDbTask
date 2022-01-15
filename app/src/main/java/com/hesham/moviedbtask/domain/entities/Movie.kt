@@ -1,18 +1,18 @@
-package com.hesham.moviedbtask.data.model
+package com.hesham.moviedbtask.domain.entities
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.hesham.moviedbtask.data.Constants
+import com.hesham.moviedbtask.ui.Constants
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "movie")
-data class MovieModel(
+data class Movie(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
-    var id: Int,
+    var id: Long,
     @SerializedName("adult")
     var adult: Boolean?,
     @SerializedName("backdrop_path")

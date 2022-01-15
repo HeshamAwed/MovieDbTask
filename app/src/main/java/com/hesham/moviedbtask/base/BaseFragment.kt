@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.hesham.moviedbtask.R
 import com.hesham.moviedbtask.ui.MainActivity
-import com.hesham.moviedbtask.util.dismissLLoadingDialog
-import com.hesham.moviedbtask.util.showDialog
+import com.hesham.moviedbtask.ui.util.dismissLLoadingDialog
+import com.hesham.moviedbtask.ui.util.showDialog
 
 open class BaseFragment : Fragment() {
 

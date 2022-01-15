@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.data
+package com.hesham.moviedbtask.ui
 
 object Constants {
     final const val TOP_RATED_MOVIE = "top_rated"

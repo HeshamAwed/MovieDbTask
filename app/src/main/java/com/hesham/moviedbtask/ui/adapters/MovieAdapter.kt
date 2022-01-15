@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hesham.moviedbtask.data.model.MovieModel
+import com.hesham.moviedbtask.domain.entities.Movie
 import com.hesham.moviedbtask.databinding.ItemMovieBinding
 import com.hesham.moviedbtask.ui.adapters.MovieAdapter.ViewHolder
 
-class MovieAdapter(val call: (MovieModel) -> Unit) : PagingDataAdapter<MovieModel, ViewHolder>(DIFF_CALLBACK) {
+class MovieAdapter(val call: (Movie) -> Unit) : PagingDataAdapter<Movie, ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,21 +25,21 @@ class MovieAdapter(val call: (MovieModel) -> Unit) : PagingDataAdapter<MovieMode
     }
 
     class ViewHolder(var binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MovieModel) {
+        fun bind(item: Movie) {
             binding.movie = item
             binding.executePendingBindings()
         }
     }
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieModel>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
             override fun areItemsTheSame(
-                oldMovie: MovieModel,
-                newMovie: MovieModel
+                oldMovie: Movie,
+                newMovie: Movie
             ) = oldMovie.id == newMovie.id
 
             override fun areContentsTheSame(
-                oldMovie: MovieModel,
-                newMovie: MovieModel
+                oldMovie: Movie,
+                newMovie: Movie
             ) = oldMovie == newMovie
         }
     }

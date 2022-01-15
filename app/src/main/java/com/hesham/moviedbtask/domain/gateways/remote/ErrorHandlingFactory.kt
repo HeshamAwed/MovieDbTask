@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.data.remote
+package com.hesham.moviedbtask.domain.gateways.remote
 
 import com.squareup.moshi.Moshi
 import retrofit2.HttpException

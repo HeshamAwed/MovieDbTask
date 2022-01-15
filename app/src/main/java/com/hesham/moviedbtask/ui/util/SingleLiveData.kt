@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.util
+package com.hesham.moviedbtask.ui.util
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData

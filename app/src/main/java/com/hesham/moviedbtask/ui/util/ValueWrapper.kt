@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.util
+package com.hesham.moviedbtask.ui.util
 
 class ValueWrapper<T>(private val value: T) {
 

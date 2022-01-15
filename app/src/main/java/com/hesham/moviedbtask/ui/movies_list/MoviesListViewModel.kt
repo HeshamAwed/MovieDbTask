@@ -2,35 +2,30 @@ package com.hesham.moviedbtask.ui.movies_list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
-import androidx.paging.Pager
-import androidx.paging.PagingData
-import androidx.paging.PagingSource
-import androidx.paging.cachedIn
+import androidx.paging.*
+import androidx.paging.rxjava2.cachedIn
 import com.hesham.moviedbtask.base.BaseViewModel
-import com.hesham.moviedbtask.data.model.MovieModel
-import com.hesham.moviedbtask.data.repos.MovieRepos
-import kotlinx.coroutines.flow.Flow
+import com.hesham.moviedbtask.domain.entities.Movie
+import com.hesham.moviedbtask.domain.usecases.getMoviesUsecase
+import io.reactivex.Flowable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
-class MoviesListViewModel constructor(var movieRepos: MovieRepos) : BaseViewModel() {
-    private var pagingSource: PagingSource<Int, MovieModel>? = null
+class MoviesListViewModel constructor(
+    private val getMoviesUsecase: getMoviesUsecase,
+) : BaseViewModel() {
+
+    private var pagingSource: PagingSource<Int, Movie>? = null
     var isRefreshing = MutableLiveData<Boolean>(false)
     var isEmptyList = MutableLiveData<Boolean>(false)
 
-    fun getMovies(popularity: String): Flow<PagingData<MovieModel>> {
 
-        val pager = Pager(
-            config = movieRepos.getDefaultPageConfig(),
-            pagingSourceFactory = {
-                movieRepos.getMovieDataSource(popularity).apply {
-                    pagingSource = this
-                }
-            }
-        ).flow
 
-        return pager.cachedIn(viewModelScope)
+    @ExperimentalCoroutinesApi
+    fun getMovies(popularity: String): Flowable<PagingData<Movie>> {
+        return getMoviesUsecase.invoke(popularity)
+            .map { pagingData -> pagingData.filter {  it.posterPath != null} }
+            .cachedIn(viewModelScope)
     }
 
     fun handleLoadStates(combinedLoadStates: CombinedLoadStates, itemCount: Int) {

@@ -1,11 +1,8 @@
-package com.hesham.moviedbtask
+package com.hesham.moviedbtask.application
 
 import android.app.Application
 import android.content.Context
-import com.hesham.moviedbtask.di.databaseModule
-import com.hesham.moviedbtask.di.networkModule
-import com.hesham.moviedbtask.di.repositoriesModule
-import com.hesham.moviedbtask.di.viewModelModule
+import com.hesham.moviedbtask.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -24,7 +21,7 @@ class MovieApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MovieApplication)
-            modules(listOf(viewModelModule, networkModule, repositoriesModule, databaseModule))
+            modules(applicationModules)
         }
     }
 }

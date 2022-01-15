@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.util
+package com.hesham.moviedbtask.ui.util
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,7 +6,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hesham.moviedbtask.MovieApplication.Companion.context
+import com.hesham.moviedbtask.application.MovieApplication.Companion.context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

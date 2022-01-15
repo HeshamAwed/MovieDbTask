@@ -2,8 +2,8 @@ package com.hesham.moviedbtask.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hesham.moviedbtask.data.remote.toBaseException
-import com.hesham.moviedbtask.util.SingleLiveData
+import com.hesham.moviedbtask.domain.gateways.remote.toBaseException
+import com.hesham.moviedbtask.ui.util.SingleLiveData
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus

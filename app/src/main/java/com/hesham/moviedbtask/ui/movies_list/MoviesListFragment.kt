@@ -8,16 +8,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.hesham.moviedbtask.R
 import com.hesham.moviedbtask.base.BaseFragment
-import com.hesham.moviedbtask.data.Constants.MOVIE_KEY_OBJECT
+import com.hesham.moviedbtask.ui.Constants.MOVIE_KEY_OBJECT
 import com.hesham.moviedbtask.databinding.FragmentListMoviesBinding
 import com.hesham.moviedbtask.ui.adapters.LoaderStateAdapter
 import com.hesham.moviedbtask.ui.adapters.MovieAdapter
+import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesListFragment : BaseFragment() {
-
+    private val mDisposable = CompositeDisposable()
     private val moviesListViewModel: MoviesListViewModel by viewModel()
     private var popularity: String? = null
 
@@ -49,9 +51,9 @@ class MoviesListFragment : BaseFragment() {
         }
         val loadStateAdapter = LoaderStateAdapter { movieAdapter.retry() }
         binding.recyclerView.adapter = movieAdapter.withLoadStateFooter(loadStateAdapter)
-        movieAdapter.addLoadStateListener {
-            moviesListViewModel.handleLoadStates(it, movieAdapter.itemCount)
-        }
+//        movieAdapter.addLoadStateListener {
+//            moviesListViewModel.handleLoadStates(it, movieAdapter.itemCount)
+//        }
         moviesListViewModel.apply {
             binding.viewModel = this
 
@@ -94,18 +96,26 @@ class MoviesListFragment : BaseFragment() {
         }
     }
 
+    @ExperimentalCoroutinesApi
     override fun onResume() {
         super.onResume()
-        popularity?.let {
-            lifecycleScope.launch {
-                moviesListViewModel.getMovies(it).collectLatest {
-                    movieAdapter.submitData(it)
-                }
-            }
+        popularity?.let { p ->
+//            lifecycleScope.launch {
+//                moviesListViewModel.getMovies(p).collectLatest {
+//                    movieAdapter.submitData(it)
+//                }
+//            }
+
+            mDisposable.add(moviesListViewModel.getMovies(p).subscribe{
+                movieAdapter.submitData(lifecycle,it)
+            })
         }
+
+
     }
 
     override fun onDestroyView() {
+        mDisposable.dispose()
         super.onDestroyView()
         _binding = null
     }

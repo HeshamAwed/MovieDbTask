@@ -9,8 +9,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hesham.moviedbtask.R
 import com.hesham.moviedbtask.base.BaseFragment
-import com.hesham.moviedbtask.data.Constants
-import com.hesham.moviedbtask.data.Constants.MOVIE_KEY_OBJECT
+import com.hesham.moviedbtask.ui.Constants
+import com.hesham.moviedbtask.ui.Constants.MOVIE_KEY_OBJECT
 import com.hesham.moviedbtask.databinding.FragmentHomeMovieBinding
 
 class MoviesHomeFragment : BaseFragment() {

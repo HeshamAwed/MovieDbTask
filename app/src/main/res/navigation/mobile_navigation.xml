@@ -22,7 +22,7 @@
         tools:layout="@layout/movie_details_fragment">
         <argument
             android:name="movie"
-            app:argType="com.hesham.moviedbtask.data.model.MovieModel" />
+            app:argType="com.hesham.moviedbtask.domain.entities.Movie" />
     </fragment>
 
 </navigation>

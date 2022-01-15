@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.hesham.moviedbtask.data.model.MovieModel" />
+            type="com.hesham.moviedbtask.domain.entities.Movie" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

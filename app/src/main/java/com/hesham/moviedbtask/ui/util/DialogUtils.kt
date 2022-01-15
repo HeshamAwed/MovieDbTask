@@ -1,4 +1,4 @@
-package com.hesham.moviedbtask.util
+package com.hesham.moviedbtask.ui.util
 
 import android.app.Dialog
 import android.graphics.Color
